@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://jbds.isdsa.org/public/journals/1/html/v3n1/s/ -->
+<html lang="en-US" xml:lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Predicting Dyslexia with Machine Learning: A Comprehensive Review of Feature
+Selection, Algorithms, and Evaluation Metrics</title> 
+ 
+<meta content="TeX4ht (https://tug.org/tex4ht/)" name="generator"> 
+<meta content="width=device-width,initial-scale=1" name="viewport"> 
+<link href="./Research Paper-7_files/S.css" rel="stylesheet" type="text/css"> 
+<meta content="S.tex" name="src"> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async="async" id="MathJax-script" src="./Research Paper-7_files/tex-chtml-full.js.download" type="text/javascript"></script>  
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-msup {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+  box-sizing: border-box;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.075em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c5B::before {
+  padding: 0.75em 0.278em 0.25em 0;
+  content: "[";
+}
+
+mjx-c.mjx-c30::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "0";
+}
+
+mjx-c.mjx-c2212::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "\2212";
+}
+
+mjx-c.mjx-c33::before {
+  padding: 0.665em 0.5em 0.022em 0;
+  content: "3";
+}
+
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+
+mjx-c.mjx-c39::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "9";
+}
+
+mjx-c.mjx-c35::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "5";
+}
+
+mjx-c.mjx-c36::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "6";
+}
+
+mjx-c.mjx-c37::before {
+  padding: 0.676em 0.5em 0.022em 0;
+  content: "7";
+}
+
+mjx-c.mjx-c34::before {
+  padding: 0.677em 0.5em 0 0;
+  content: "4";
+}
+
+mjx-c.mjx-c5D::before {
+  padding: 0.75em 0.278em 0.25em 0;
+  content: "]";
+}
+</style></head><body>
+   <div class="maketitle" id="-tht-nopartrue-x-thth-classtitlehead-nopartrue-predicting-dyslexia-with-machine-learning-a-comprehensive-review-of-feature-selection-algorithms-and-evaluation-metrics-x-thth-removeindenttrue-tht"><span id="-nopartrue-end-x-thtdiv-classauthor-velmurugan-s-nopartrue-end-x-thtdiv"></span>
+                                                                  
+
+                                                                  
+   <a id="likesection.1"></a><a id="x1-2x"></a><a id="x1-3r1"></a>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<span class="cmti-10">Journal of Behavioral Data Science</span>, 2023, <span class="cmti-10">3 </span>(1), 70–83. <br class="newline">DOI:https://doi.org/10.35566/jbds/v3n1/s
+
+<h2 class="titleHead">Predicting Dyslexia with Machine Learning: A
+Comprehensive Review of Feature Selection,
+Algorithms, and Evaluation Metrics</h2>
+<div class="author">Velmurugan S<mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="0" style="font-size: 101.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mi class="mjx-n"></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c5B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c39"></mjx-c><mjx-c class="mjx-c35"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c36"></mjx-c><mjx-c class="mjx-c37"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c5D"></mjx-c></mjx-mo></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi></mi><mrow data-mjx-texclass="ORD"><mo stretchy="false">[</mo><mn>0000</mn><mo>−</mo><mn>0003</mn><mo>−</mo><mn>1956</mn><mo>−</mo><mn>3674</mn><mo stretchy="false">]</mo></mrow></msup></math></mjx-assistive-mml></mjx-container> </div>
+<span class="cmr-9">Department of Electrical Engineering, Indian Institute of technology Madras
+Chennai, India</span><br>
+<span class="cmtt-9">ee21s131@smail.iitm.ac.in</span>
+<a id="Q1-1-1"></a>
+<a id="Q1-1-2"></a>
+   </div><section class="abstract" role="doc-abstract"> 
+
+     <span class="cmbx-9">Abstract. </span><span class="cmr-9">This   literature   review   explores   the   use   of   machine
+     learning-based approaches for the diagnosis and treatment of dyslexia,
+     a  learning  disorder  that  affects  reading  and  spelling  skills.  Various
+     machine  learning  models,  such  as  artificial  neural  networks  (ANNs),
+     support vector machines (SVMs), and decision trees, have been used to
+     classify individuals as either dyslexic or non-dyslexic based on functional
+     magnetic resonance imaging (fMRI) and electroencephalography (EEG)
+     data. These models have shown promising results for early detection
+     and personalized treatment plans. However, further research is needed
+     to validate these approaches and identify optimal features and models
+     for dyslexia diagnosis and treatment.</span>
+     <!-- l. 71 --><p class="noindent"><span class="cmti-9">Keywords: </span><span class="cmr-9">SVM </span><span class="tcrm-0900">· </span><span class="cmr-9">EEG </span><span class="tcrm-0900">· </span><span class="cmr-9">Dyslexia</span>
+</p>
+</section>
+   <h3 class="sectionHead" id="introduction"><span class="titlemark">1   </span> <a id="x1-10001"></a>Introduction</h3>
+<!-- l. 78 --><p class="noindent">Dyslexia is a learning disorder that affects reading and spelling skills. It is a complex
+neurological condition that can impact individuals of all ages, ethnicities, and
+socioeconomic statuses. Early detection and intervention are crucial for managing
+dyslexia, and machine learning-based approaches have emerged as a promising tool
+for achieving this (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkaisar2020developmental">Kaisar</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkaisar2020developmental">2020</a>). Machine learning is a branch of artificial intelligence
+                                                                  
+
+                                                                  
+that involves developing algorithms that can learn from and make predictions on
+data. Machine learning models can be trained on large datasets of dyslexia-related
+information, such as functional magnetic resonance imaging (fMRI) and
+electroencephalography (EEG) data, to extract features and patterns that
+are associated with dyslexia. These features can then be used to develop
+diagnostic tools or personalized treatment plans. In this context, machine
+learning-based approaches are being explored for the diagnosis and treatment of
+dyslexia. These approaches involve the use of different machine learning
+algorithms, such as artificial neural networks (ANNs), support vector machines
+(SVMs), decision trees, and Bayesian networks, to classify individuals as
+either dyslexic or non-dyslexic based on specific features extracted from the
+data(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xchakraborty2021">Chakraborty, Vani,&nbsp;&amp; Sundaram</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xchakraborty2021">2021</a>). The potential benefits of using
+machine learning-based approaches for dyslexia are significant. They can provide early
+detection of dyslexia, which can lead to earlier intervention and better outcomes.
+Additionally, personalized treatment plans can be developed, which take
+into account individual characteristics such as age, gender, and severity of
+dyslexia, and can increase the likelihood of treatment success (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xprabha2022prediction">Prabha&nbsp;&amp;
+Bhargavi</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xprabha2022prediction">2022</a>;&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xrello2015detecting">Rello&nbsp;&amp; Ballesteros</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xrello2015detecting">2015</a>). However, more research is needed to
+validate the effectiveness of machine learning-based approaches for dyslexia
+diagnosis and treatment. In this literature review, we will explore the use of
+machine learning-based approaches for the diagnosis and treatment of dyslexia
+in more detail, highlighting the potential benefits and limitations of these
+approaches.
+</p><!-- l. 82 --><p class="noindent">
+</p>
+   <h3 class="sectionHead" id="data-collection-and-preprocessing"><span class="titlemark">2   </span> <a id="x1-20002"></a>Data Collection and Preprocessing</h3>
+<!-- l. 83 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="datasets"><span class="titlemark">2.1   </span> <a id="x1-30002.1"></a>Datasets</h4>
+<!-- l. 84 --><p class="noindent">The data collection process for dyslexia prediction involves obtaining samples from
+both dyslexic and non-dyslexic individuals. The data can be collected from various
+sources, such as schools, hospitals, and research centers. It is essential to
+ensure that the data is representative of the population, and the sample size is
+large enough to build a robust model. There are several open-source datasets
+available for machine learning-based approaches for dyslexia prediction. Here, we
+compare and contrast some of the commonly used datasets represented in Table
+1.
+                                                                  
+
+                                                                  
+</p><!-- l. 94 --><p class="indent" id="-score">   <a id="x1-3001r1"></a></p><figure class="float">
+                                                                  
+
+                                                                  
+<figcaption class="caption"><span class="id">Table&nbsp;1: </span><span class="content">Score</span></figcaption><!-- tex4ht:label?: x1-3001r1  -->
+<div class="tabular"> <table class="tabular" id="TBL-1"><colgroup id="TBL-1-1g"><col id="TBL-1-1"><col id="TBL-1-2"><col id="TBL-1-3"><col id="TBL-1-4"><col id="TBL-1-5"></colgroup><tbody><tr class="hline"><td></td><td></td><td></td><td></td><td></td></tr><tr id="TBL-1-1-" style="vertical-align:baseline;"><td class="td11" id="TBL-1-1-1" style="white-space:normal; text-align:left;"><!-- l. 98 --><p class="noindent">Dataset            </p></td><td class="td11" id="TBL-1-1-2" style="white-space:normal; text-align:left;"><!-- l. 98 --><p class="noindent">Sample
+Size      </p></td><td class="td11" id="TBL-1-1-3" style="white-space:normal; text-align:left;"><!-- l. 98 --><p class="noindent">Age
+Range   </p></td><td class="td11" id="TBL-1-1-4" style="white-space:normal; text-align:left;"><!-- l. 98 --><p class="noindent">Features                                         </p></td><td class="td11" id="TBL-1-1-5" style="white-space:normal; text-align:left;"><!-- l. 98 --><p class="noindent">Limitations                                     </p></td>
+</tr><tr class="hline"><td></td><td></td><td></td><td></td><td></td></tr><tr id="TBL-1-2-" style="vertical-align:baseline;"><td class="td11" id="TBL-1-2-1" style="white-space:normal; text-align:left;"><!-- l. 100 --><p class="noindent">Dyslexia Data    </p></td><td class="td11" id="TBL-1-2-2" style="white-space:normal; text-align:left;"><!-- l. 100 --><p class="noindent">50        </p></td><td class="td11" id="TBL-1-2-3" style="white-space:normal; text-align:left;"><!-- l. 100 --><p class="noindent">7-16     </p></td><td class="td11" id="TBL-1-2-4" style="white-space:normal; text-align:left;"><!-- l. 100 --><p class="noindent">Brain wave patterns (EEG)                </p></td><td class="td11" id="TBL-1-2-5" style="white-space:normal; text-align:left;"><!-- l. 100 --><p class="noindent">Small  sample  size,  limited  age  range,
+limited features                                </p></td>
+</tr><tr id="TBL-1-3-" style="vertical-align:baseline;"><td class="td11" id="TBL-1-3-1" style="white-space:normal; text-align:left;"><!-- l. 101 --><p class="noindent">Coimbra
+Dyslexia
+Database           </p></td><td class="td11" id="TBL-1-3-2" style="white-space:normal; text-align:left;"><!-- l. 101 --><p class="noindent">289      </p></td><td class="td11" id="TBL-1-3-3" style="white-space:normal; text-align:left;"><!-- l. 101 --><p class="noindent">7-14     </p></td><td class="td11" id="TBL-1-3-4" style="white-space:normal; text-align:left;"><!-- l. 101 --><p class="noindent">EEG,   behavioral,   neuropsychological
+measures                                        </p></td><td class="td11" id="TBL-1-3-5" style="white-space:normal; text-align:left;"><!-- l. 101 --><p class="noindent">Limited  age  range,  limited  geographic
+distribution                                     </p></td>
+</tr><tr id="TBL-1-4-" style="vertical-align:baseline;"><td class="td11" id="TBL-1-4-1" style="white-space:normal; text-align:left;"><!-- l. 102 --><p class="noindent">Haskins
+Dyslexia Corpus </p></td><td class="td11" id="TBL-1-4-2" style="white-space:normal; text-align:left;"><!-- l. 102 --><p class="noindent">45        </p></td><td class="td11" id="TBL-1-4-3" style="white-space:normal; text-align:left;"><!-- l. 102 --><p class="noindent">7-18     </p></td><td class="td11" id="TBL-1-4-4" style="white-space:normal; text-align:left;"><!-- l. 102 --><p class="noindent">Behavioral and brain imaging measures</p></td><td class="td11" id="TBL-1-4-5" style="white-space:normal; text-align:left;"><!-- l. 102 --><p class="noindent">Limited  sample  size,  limited  features,
+limited geographic distribution            </p></td>
+</tr><tr id="TBL-1-5-" style="vertical-align:baseline;"><td class="td11" id="TBL-1-5-1" style="white-space:normal; text-align:left;"><!-- l. 103 --><p class="noindent">Dyslexia    EEG
+Dataset             </p></td><td class="td11" id="TBL-1-5-2" style="white-space:normal; text-align:left;"><!-- l. 103 --><p class="noindent">19        </p></td><td class="td11" id="TBL-1-5-3" style="white-space:normal; text-align:left;"><!-- l. 103 --><p class="noindent">10-14    </p></td><td class="td11" id="TBL-1-5-4" style="white-space:normal; text-align:left;"><!-- l. 103 --><p class="noindent">EEG                                              </p></td><td class="td11" id="TBL-1-5-5" style="white-space:normal; text-align:left;"><!-- l. 103 --><p class="noindent">Extremely small sample size, limited age
+range, limited features                       </p></td>
+</tr><tr id="TBL-1-6-" style="vertical-align:baseline;"><td class="td11" id="TBL-1-6-1" style="white-space:normal; text-align:left;"><!-- l. 104 --><p class="noindent">Dunedin Study   </p></td><td class="td11" id="TBL-1-6-2" style="white-space:normal; text-align:left;"><!-- l. 104 --><p class="noindent">1,037    </p></td><td class="td11" id="TBL-1-6-3" style="white-space:normal; text-align:left;"><!-- l. 104 --><p class="noindent">Birth to
+38        </p></td><td class="td11" id="TBL-1-6-4" style="white-space:normal; text-align:left;"><!-- l. 104 --><p class="noindent">Cognitive, behavioral, and neurological
+tests                                              </p></td><td class="td11" id="TBL-1-6-5" style="white-space:normal; text-align:left;"><!-- l. 104 --><p class="noindent">Limited  to  one  geographic  location,
+limited age range, may not have been
+specifically designed for dyslexia          </p></td>
+</tr><tr id="TBL-1-7-" style="vertical-align:baseline;"><td class="td11" id="TBL-1-7-1" style="white-space:normal; text-align:left;"><!-- l. 106 --><p class="noindent">German
+longitudinal
+study               </p></td><td class="td11" id="TBL-1-7-2" style="white-space:normal; text-align:left;"><!-- l. 106 --><p class="noindent">365      </p></td><td class="td11" id="TBL-1-7-3" style="white-space:normal; text-align:left;"><!-- l. 106 --><p class="noindent">5-6    at
+entry    </p></td><td class="td11" id="TBL-1-7-4" style="white-space:normal; text-align:left;"><!-- l. 106 --><p class="noindent">Behavioral    and    neuropsychological
+measures                                        </p></td><td class="td11" id="TBL-1-7-5" style="white-space:normal; text-align:left;"><!-- l. 106 --><p class="noindent">Limited  age  range,  limited  geographic
+distribution                                     </p></td>
+</tr><tr id="TBL-1-8-" style="vertical-align:baseline;"><td class="td11" id="TBL-1-8-1" style="white-space:normal; text-align:left;"><!-- l. 108 --><p class="noindent">Large-scale
+Dyslexia
+Dataset             </p></td><td class="td11" id="TBL-1-8-2" style="white-space:normal; text-align:left;"><!-- l. 108 --><p class="noindent">3,920    </p></td><td class="td11" id="TBL-1-8-3" style="white-space:normal; text-align:left;"><!-- l. 108 --><p class="noindent">6-21     </p></td><td class="td11" id="TBL-1-8-4" style="white-space:normal; text-align:left;"><!-- l. 108 --><p class="noindent">Behavioral    and    neuropsychological
+measures                                        </p></td><td class="td11" id="TBL-1-8-5" style="white-space:normal; text-align:left;"><!-- l. 108 --><p class="noindent">Limited EEG data, limited geographic
+distribution                                     </p></td>
+</tr><tr class="hline"><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>                                                                                        </div>
+                                                                  
+
+                                                                  
+   </figure>
+   <h4 class="subsectionHead" id="preprocessing-techniques"><span class="titlemark">2.2   </span> <a id="x1-40002.2"></a>Preprocessing Techniques</h4>
+<!-- l. 114 --><p class="noindent">Preprocessing techniques are crucial in dyslexia prediction as they help in improving
+the accuracy and reliability of the data. Here are some preprocessing techniques that
+are particularly relevant to dyslexia prediction.
+</p>
+   <h5 class="subsubsectionHead" id="data-cleaning"><a id="x1-5000"></a>Data Cleaning</h5>
+<!-- l. 116 --><p class="noindent">Data cleaning is an essential step in preparing datasets for machine learning models.
+Here are some techniques that can be used for data cleaning in dyslexia prediction
+datasets. Outliers are data points that are significantly different from other data
+points in the dataset. They can result from measurement errors or represent rare
+occurrences. Outliers can significantly impact the accuracy of a predictive model, and
+therefore it is essential to detect and handle them appropriately (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xahmad2022efficient">Ahmad, Rehman,
+Hassan, Ahmad,&nbsp;&amp; Rashid</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xahmad2022efficient">2022</a>). Dyslexia prediction often involves working with
+categorical data such as gender, age, and socio-economic status. Machine
+learning models require numerical data for training and prediction; therefore,
+categorical data must be encoded. One common approach is label encoding,
+where each category is assigned a unique numerical value (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xchakraborty2020machine">Chakraborty&nbsp;&amp;
+Sundaram</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xchakraborty2020machine">2020</a>).
+</p>
+   <h5 class="subsubsectionHead" id="feature-extraction"><a id="x1-6000"></a>Feature Extraction</h5>
+<!-- l. 117 --><p class="noindent">Feature extraction is a technique used to select relevant features from the raw data to
+improve the performance of the model. Dyslexia prediction involves dealing with large
+amounts of data that may contain irrelevant features. Feature extraction techniques
+such as PCA, LDA, and ICA can be used to reduce the dimension of the data and
+extract the most relevant features.
+</p>
+   <h5 class="subsubsectionHead" id="normalization"><a id="x1-7000"></a>Normalization</h5>
+<!-- l. 118 --><p class="noindent">Normalization is a technique used to scale the data to a common range. Dyslexia
+prediction involves dealing with large amounts of data that may contain features that
+are on different scales. Normalization techniques such as Min-Max normalization and
+Z-score normalization can be used to ensure that the features are on the same scale
+and no feature dominates the model.
+</p>
+   <h5 class="subsubsectionHead" id="feature-selection"><a id="x1-8000"></a>Feature Selection</h5>
+<!-- l. 120 --><p class="noindent">Feature selection is a technique used to select the most important features from the
+data. Dyslexia prediction involves dealing with large amounts of data that may
+                                                                  
+
+                                                                  
+contain irrelevant features. Feature selection techniques such as RFE, CFS, and GA
+can be used to identify the most relevant features and improve the accuracy of the
+model.
+</p>
+   <h5 class="subsubsectionHead" id="data-augmentation"><a id="x1-9000"></a>Data Augmentation</h5>
+<!-- l. 122 --><p class="noindent">Dyslexia prediction involves dealing with class-imbalanced data where there may be
+more non-dyslexic samples than dyslexic samples. Data augmentation techniques such
+as oversampling and undersampling can be used to balance the class distribution of
+dyslexic and non-dyslexic samples, which can help improve the accuracy of the
+model.
+</p><!-- l. 124 --><p class="indent">   In summary, preprocessing techniques play a crucial role in Dyslexia prediction.
+They help improve the accuracy and reliability of the data by identifying and
+correcting errors, selecting relevant features, scaling the data, selecting the most
+important features, and balancing the class distribution of the data.
+</p><!-- l. 126 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="issues-with-imbalanced-datasets"><span class="titlemark">2.3   </span> <a id="x1-100002.3"></a>Issues with imbalanced datasets</h4>
+<!-- l. 127 --><p class="noindent">Dyslexia is a relatively rare condition, and datasets used for dyslexia prediction are
+often imbalanced, meaning that there are fewer positive (dyslexic) cases
+than negative (non-dyslexic) cases. Imbalanced datasets can lead to biased
+machine learning models that perform well on negative cases but poorly on
+positive cases. To address this issue, researchers can use techniques such as
+oversampling of positive cases, undersampling of negative cases, or synthetic minority
+oversampling technique (SMOTE) to balance the dataset. Care must be taken
+when selecting these techniques as they can lead to overfitting or underfitting
+of the model. It is important to note that these issues are not unique to
+dyslexia prediction, but are common challenges in machine learning research in
+general. To develop accurate and reliable predictive models for dyslexia,
+researchers must pay close attention to these issues and carefully select and
+preprocess data before training models. Furthermore, the development of ethical
+guidelines for the use of predictive models for dyslexia is necessary to ensure that
+such models are not used in discriminatory or harmful ways (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xprabha2022prediction">Prabha&nbsp;&amp;
+Bhargavi</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xprabha2022prediction">2022</a>).
+</p><!-- l. 129 --><p class="noindent">
+</p>
+   <h3 class="sectionHead" id="materials-and-methods"><span class="titlemark">3   </span> <a id="x1-110003"></a>Materials and Methods</h3>
+<!-- l. 131 --><p class="noindent">There have been several machine learning approaches used for dyslexia prediction.
+Some of the most commonly used approaches are discussed below.
+                                                                  
+
+                                                                  
+</p><!-- l. 133 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="logistic-regression"><span class="titlemark">3.1   </span> <a id="x1-120003.1"></a>Logistic Regression</h4>
+<!-- l. 135 --><p class="noindent">In the context of dyslexia, logistic regression has been employed to analyze various
+features and identify key predictors. Researchers have utilized linguistic, cognitive,
+behavioral, and genetic data to train logistic regression models and predict
+the likelihood of dyslexia. A study conducted by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xmartin2016dyslexic">Martin, Kronbichler,&nbsp;and
+Richlan</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xmartin2016dyslexic">2016</a>) used logistic regression to analyze linguistic features and achieved an
+accuracy of 85% in predicting dyslexia. Similarly, <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xplante2015nature">Plante&nbsp;et al.</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xplante2015nature">2015</a>) utilized logistic
+regression to classify behavioral and genetic data, achieving an accuracy of 81% in
+dyslexia prediction. Logistic regression’s simplicity and interpretability make it an
+attractive choice for dyslexia prediction. It allows researchers to understand the
+contribution of different features and provides a clear understanding of the
+relationship between predictors and the likelihood of dyslexia (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xtamboer2014identifying">Tamboer, Vorst,&nbsp;&amp;
+Oort</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xtamboer2014identifying">2014</a>).
+</p><!-- l. 137 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="decision-trees"><span class="titlemark">3.2   </span> <a id="x1-130003.2"></a>Decision Trees</h4>
+<!-- l. 139 --><p class="noindent">Decision Trees have been employed as a predictive tool for dyslexia. A decision tree is
+a flowchart-like structure where each internal node represents a feature or attribute,
+each branch represents a decision rule, and each leaf node represents the outcome or
+class label. By partitioning the feature space based on different attributes, decision
+trees can classify data points effectively. Several studies have utilized decision trees for
+dyslexia prediction. For example, a study conducted by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xprabha2019predictive">Prabha, Bhargavi,&nbsp;and
+Ragala</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xprabha2019predictive">2019</a>) employed decision trees to analyze behavioral and cognitive data of
+dyslexic and non-dyslexic individuals and achieved an accuracy of 79%. Additionally,
+a study by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xvanitha2021dyslexia">Vanitha&nbsp;and Kasthuri</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xvanitha2021dyslexia">2021</a>) utilized decision trees to classify genetic and
+environmental data of dyslexic and non-dyslexic adults and achieved an accuracy of
+83%.
+</p><!-- l. 141 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="random-forest"><span class="titlemark">3.3   </span> <a id="x1-140003.3"></a>Random Forest</h4>
+<!-- l. 141 --><p class="noindent">Random Forest is an ensemble learning algorithm that uses multiple decision trees to
+classify data. It has been used in dyslexia prediction by classifying fMRI data of
+dyslexic and non-dyslexic individuals (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xprabha2019predictive">Prabha&nbsp;et al.</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xprabha2019predictive">2019</a>)
+</p><!-- l. 144 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="support-vector-machines-svm"><span class="titlemark">3.4   </span> <a id="x1-150003.4"></a>Support Vector Machines (SVM)</h4>
+                                                                  
+
+                                                                  
+<!-- l. 144 --><p class="noindent">Support Vector Machines (SVM) have proven to be highly efficient in predicting
+dyslexia with remarkable accuracy. SVM is a widely used classification algorithm in
+the field of machine learning. It operates by finding an optimal hyperplane that
+effectively separates different classes in the data. In the case of dyslexia prediction,
+SVM has been extensively utilized and has showcased promising outcomes. SVM has
+been employed in the classification of fMRI (functional magnetic resonance imaging)
+data for dyslexic and non-dyslexic individuals. A study conducted by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xmartin2016dyslexic">Martin&nbsp;et
+al.</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xmartin2016dyslexic">2016</a>) focused on using SVM to classify fMRI data from dyslexic and non-dyslexic
+children. They achieved an accuracy of 87.5%, demonstrating the effectiveness of
+SVM in distinguishing between the two groups. Similarly, <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xplante2015nature">Plante&nbsp;et al.</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xplante2015nature">2015</a>)
+employed SVM to classify fMRI data of dyslexic and non-dyslexic adults and
+obtained an accuracy of 80%, further emphasizing the utility of SVM in dyslexia
+prediction.
+</p><!-- l. 147 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="knearest-neighbors-knn"><span class="titlemark">3.5   </span> <a id="x1-160003.5"></a>K-Nearest Neighbors (KNN)</h4>
+<!-- l. 149 --><p class="noindent">K-Nearest Neighbors (KNN) is another classification algorithm that has been
+explored for dyslexia prediction. KNN determines the class membership of a data
+point by considering the classes of its neighboring data points in the feature space. By
+calculating the distance between data points, KNN identifies the K nearest neighbors
+and assigns the majority class to the target data point. In the context of
+dyslexia prediction, KNN has shown promising results. A study conducted by
+(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkaisar2020developmental">Kaisar</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkaisar2020developmental">2020</a>) utilized KNN to classify linguistic and behavioral features of dyslexic
+and non-dyslexic individuals and achieved an accuracy of 82% . Similarly, a
+study by Thompson et al. (2018) employed KNN to analyze neuroimaging
+data of dyslexic and non-dyslexic children and achieved an accuracy of 76%
+.
+</p><!-- l. 151 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="artificial-neural-networks-ann"><span class="titlemark">3.6   </span> <a id="x1-170003.6"></a>Artificial Neural Networks (ANN)</h4>
+<!-- l. 153 --><p class="noindent">Artificial Neural Networks (ANN) have been employed in predicting dyslexia with
+remarkable accuracy. ANN is a powerful machine learning technique inspired by the
+structure and functioning of biological neural networks. It consists of interconnected
+nodes, or artificial neurons, organized in layers that process and transmit information.
+By training the network on dyslexic and non-dyslexic data, ANN can learn complex
+patterns and make accurate predictions. Several studies have utilized ANN for
+dyslexia prediction with promising outcomes. For example, a study conducted by
+<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xmartin2016dyslexic">Martin&nbsp;et al.</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xmartin2016dyslexic">2016</a>) utilized ANN to analyze linguistic and cognitive features of
+dyslexic and non-dyslexic individuals and achieved an accuracy of 91%. Another
+study by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xplante2015nature">Plante&nbsp;et al.</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xplante2015nature">2015</a>) employed ANN to classify behavioral and
+genetic data of dyslexic and non-dyslexic children and achieved an accuracy of
+                                                                  
+
+                                                                  
+85%.
+</p><!-- l. 157 --><p class="noindent">
+</p>
+   <h4 class="subsectionHead" id="convolutional-neural-networks-cnn"><span class="titlemark">3.7   </span> <a id="x1-180003.7"></a>Convolutional Neural Networks (CNN)</h4>
+<!-- l. 159 --><p class="noindent">In dyslexia research, Convolutional Neural Networks (CNNs) have been applied
+to classify brain scans, such as MRI or fMRI, of dyslexic and non-dyslexic
+individuals. By utilizing convolutional layers to detect local patterns and pooling
+layers to aggregate information, CNNs can automatically learn discriminative
+features that differentiate between the two groups. A study conducted by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xzahia2020dyslexia">Zahia,
+Garcia-Zapirain, Saralegui,&nbsp;and Fernandez-Ruanova</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xzahia2020dyslexia">2020</a>) utilized CNNs to classify
+brain activation patterns from fMRI data, achieving an accuracy of 88%
+in distinguishing dyslexic and non-dyslexic individuals . Similarly, a study
+by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xalqahtani2023">Alqahtani, Alzahrani,&nbsp;and Ramzan</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xalqahtani2023">2023</a>)) employed CNNs to analyze
+structural brain data, obtaining an accuracy of 82% in dyslexia prediction.
+CNNs’ ability to automatically learn relevant features from raw input data,
+such as brain scans, has significantly contributed to the advancement of
+dyslexia research. Their ability to capture spatial information and hierarchical
+representations makes them highly effective in identifying patterns associated with
+dyslexia.
+</p><!-- l. 163 --><p class="indent">   Overall, the choice of machine learning approach depends on the type of data
+available and the research question being addressed need to carefully consider the
+trade-offs between accuracy and interpretability when selecting a machine learning
+approach for dyslexia prediction.
+</p><!-- l. 165 --><p class="noindent">
+</p>
+   <h3 class="sectionHead" id="case-studies-and-experiments-proposed-by-researchers"><span class="titlemark">4   </span> <a id="x1-190004"></a>Case Studies and Experiments Proposed by Researchers</h3>
+<!-- l. 167 --><p class="noindent"><a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xasvestopoulou2019dyslexml">Asvestopoulou&nbsp;et al.</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xasvestopoulou2019dyslexml">2019</a>) present a screening tool for dyslexia based on machine
+learning techniques. The tool is called DysLexML and is designed to provide an
+automated and objective assessment of dyslexia based on a set of language-related
+tasks. The study involved collecting data from 44 dyslexic and 44 non-dyslexic
+participants, who performed a series of language-related tasks. The data was then
+used to train several machine learning algorithms, including decision trees, support
+vector machines, and random forests, to classify participants as either dyslexic or
+non-dyslexic.The results showed that DysLexML achieved an accuracy of 89.8% in
+identifying dyslexic participants, with a sensitivity of 91% and a specificity of 88.6%.
+The authors suggest that DysLexML could be used as a screening tool for
+dyslexia in clinical and educational settings, providing an objective and efficient
+means of identifying individuals who may require further evaluation and
+support. Overall, the study demonstrates the potential of machine learning
+techniques for the early detection and diagnosis of dyslexia, and highlights the
+importance of developing automated and objective screening tools for this
+                                                                  
+
+                                                                  
+condition.
+</p><!-- l. 169 --><p class="indent">   <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xvajs2022dyslexia">Vajs, Kovic, Papic, Savic,&nbsp;and Jankovic</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xvajs2022dyslexia">2022</a>) studied the use of machine
+learning and eye-tracking measures to detect readers with dyslexia. The study
+collected data from 48 participants with and without dyslexia while they read texts
+on a computer screen. Eye-tracking measures were used to capture data on reading
+speed, fixations, and regressions. The data was then used to train machine learning
+models to identify individuals with dyslexia. The results showed that the models
+achieved high accuracy rates in detecting dyslexia, with an average accuracy of 87%.
+The authors claimed that their approach could be used to provide early detection of
+dyslexia and improve interventions for individuals with dyslexia. They also
+suggested that their method could be used to develop personalized reading
+interventions for individuals with dyslexia based on their specific reading
+patterns.
+</p><!-- l. 171 --><p class="indent">   The work by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xrello2018screening">Rello&nbsp;et al.</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xrello2018screening">2018</a>) proposes a new method for screening dyslexia in
+English using human-computer interaction (HCI) measures and machine learning.
+The study involved 24 dyslexic and 23 non-dyslexic participants who were asked to
+read a set of texts and perform several HCI tasks. The collected data were then
+analyzed using various machine learning algorithms to identify potential features for
+dyslexia screening. The results showed that a combination of HCI measures, such as
+reading speed, fixation duration, and saccade amplitude, could accurately
+classify dyslexic and non-dyslexic individuals. The proposed method has the
+potential to provide a fast, cost-effective, and reliable way to screen dyslexia in
+English, which could improve the early detection and intervention of the
+disorder.
+</p><!-- l. 173 --><p class="indent">   The work by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xrello2016dytective">Rello&nbsp;et al.</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xrello2016dytective">2016</a>) presents a screening tool for dyslexia called
+Dytective that uses a game-based approach to assess reading skills. The game
+collects data on various linguistic features such as phonology, orthography, and
+semantics, and uses machine learning algorithms to predict the risk of dyslexia.
+The study suggests that the game-based approach is engaging and effective
+in identifying individuals at risk of dyslexia, with a reported accuracy of
+90
+</p><!-- l. 175 --><p class="indent">   The work by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkhan2018machine">Khan, Cheng,&nbsp;and Bee</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkhan2018machine">2018</a>) proposes a diagnostic and
+classification system (DCS) for identifying dyslexia in children using machine learning
+techniques. The system uses a combination of auditory and visual stimuli to assess a
+child’s reading ability and analyzes the data using feature selection and classification
+algorithms to determine the presence and severity of dyslexia. The authors claim that
+their system has high accuracy and can provide an objective and efficient way of
+diagnosing dyslexia, which can lead to earlier intervention and improved outcomes for
+affected children.
+</p><!-- l. 177 --><p class="indent">   The paper by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xchakraborty2020machine">Chakraborty&nbsp;and Sundaram</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xchakraborty2020machine">2020</a>) presents a machine learning
+algorithm for predicting dyslexia using eye movement data. The study collected
+eye-tracking data from 20 dyslexic and 20 non-dyslexic participants and
+used machine learning techniques to classify the participants into dyslexic
+and non-dyslexic groups based on their eye movement patterns. The results
+show that the proposed algorithm achieved an accuracy of 90% in predicting
+                                                                  
+
+                                                                  
+dyslexia.
+</p><!-- l. 179 --><p class="indent">   The paper by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkariyawasam2019gamified">Kariyawasam, Nadeeshani, Hamid, Subasinghe,&nbsp;and Ratnayake</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkariyawasam2019gamified">2019</a>)
+proposes a gamified approach for screening and intervention of dyslexia, dysgraphia,
+and dyscalculia. The proposed approach uses games and exercises to identify learning
+disabilities in children and provide them with appropriate interventions. The
+study was conducted on a group of 30 children, and the results showed that
+the gamified approach was effective in identifying and addressing learning
+disabilities.
+</p><!-- l. 181 --><p class="indent">   The paper by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xmmt2019intelligent">MMT&nbsp;and Sangamithra</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xmmt2019intelligent">2019</a>) proposes an intelligent system
+for predicting learning disabilities in school-going children using fuzzy logic
+and K-means clustering in machine learning. The study collected data from
+100 students and used fuzzy logic and K-means clustering to classify the
+students into normal and learning-disabled groups. The results showed that
+the proposed system achieved an accuracy of 93% in predicting learning
+disabilities.
+</p><!-- l. 183 --><p class="indent">   The paper by <a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xjothi2019predictive">Jothi&nbsp;Prabha&nbsp;and Bhargavi</a>&nbsp;(<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xjothi2019predictive">2019</a>) presents a predictive model for
+dyslexia using eye fixation events. The study collected eye-tracking data from 30
+dyslexic and 30 non-dyslexic participants and used machine learning techniques to
+classify the participants into dyslexic and non-dyslexic groups based on their eye
+fixation events. The results showed that the proposed model achieved an accuracy of
+95% in predicting dyslexia.
+</p><!-- l. 185 --><p class="noindent">
+</p>
+   <h3 class="sectionHead" id="evaluation-metrics-"><span class="titlemark">5   </span> <a id="x1-200005"></a>Evaluation Metrics </h3>
+<!-- l. 187 --><p class="noindent">Many evaluation metrics are used to measure the performance of dyslexia prediction
+models. The commonly used evaluation metrics for classification models are accuracy,
+precision, recall, F1 score, area under the receiver operating characteristic curve
+(AUC-ROC), and confusion matrix (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xfawcett2006introduction">Fawcett</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xfawcett2006introduction">2006</a>;&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xpowers2020evaluation">Powers</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xpowers2020evaluation">2020</a>;&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xsaito2015precision">Saito&nbsp;&amp;
+Rehmsmeier</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xsaito2015precision">2015</a>)]. </p>
+   <ul class="itemize1">
+   <li class="itemize">Accuracy:  It  is  the  proportion  of  correct  predictions  out  of  the  total
+   predictions made by the model. It is computed as the ratio of true positives
+   and true negatives to the total number of observations.
+   </li>
+   <li class="itemize">Precision: It is the proportion of true positive predictions out of the total
+   positive predictions made by the model. It is computed as the ratio of true
+   positives to the sum of true positives and false positives.
+   </li>
+   <li class="itemize">Recall: It is the proportion of true positive predictions out of the total actual
+   positive observations in the data. It is computed as the ratio of true positives
+                                                                  
+
+                                                                  
+   to the sum of true positives and false negatives.
+   </li>
+   <li class="itemize">F1 score: It is the harmonic mean of precision and recall, which balances
+   both the measures. It is computed as 2 times the product of precision and
+   recall, divided by the sum of precision and recall.
+   </li>
+   <li class="itemize">AUC-ROC: It is a performance metric that measures the trade-off between
+   true  positive  rate  (sensitivity)  and  false  positive  rate  (1-specificity)  at
+   different classification thresholds. It is the area under the curve of the ROC
+   plot, which is a plot of sensitivity vs. 1-specificity at different threshold
+   values.
+   </li>
+   <li class="itemize">Confusion  matrix:  It  is  a  table  that  summarizes  the  performance  of  a
+   classification model by showing the number of true positives, true negatives,
+   false positives, and false negatives.</li></ul>
+<!-- l. 197 --><p class="indent">   These evaluation metrics are important to assess the performance of dyslexia
+prediction models and to compare the performance of different models. It is
+important to note that the choice of evaluation metric depends on the specific use
+case and the goals of the model.
+</p><!-- l. 199 --><p class="noindent">
+</p>
+   <h3 class="sectionHead" id="limitations-and-challenges"><span class="titlemark">6   </span> <a id="x1-210006"></a>Limitations and Challenges</h3>
+<!-- l. 201 --><p class="noindent">Although machine learning techniques have shown great promise in predicting
+dyslexia disease, there are some limitations and challenges that must be
+considered.
+</p><!-- l. 203 --><p class="indent">   <span class="cmbx-10">Data availability</span>. One of the biggest challenges in using ML for Dyslexia
+prediction is the lack of large and diverse datasets. Many studies in this area use
+small datasets, which may not be representative of the entire population.
+</p><!-- l. 205 --><p class="indent">   <span class="cmbx-10">Generalization</span>. Dyslexia prediction models developed using ML may perform
+well on the dataset used for training, but they may not generalize well to new and
+unseen data. This is known as overfitting, and it can lead to poor model performance
+in real-world scenarios.
+</p><!-- l. 207 --><p class="indent">   <span class="cmbx-10">Complexity of algorithms</span>. Some ML algorithms are complex and difficult to
+interpret, which makes it challenging to understand how the algorithm arrived at a
+particular prediction. This can be a significant limitation in clinical settings, where
+clear explanations are required.
+</p><!-- l. 209 --><p class="indent">   <span class="cmbx-10">Class imbalance</span>. The class imbalance problem arises when the number of
+dyslexic samples is significantly smaller than the number of non-Dyslexic
+samples. This can lead to biased model performance and poor prediction
+accuracy.
+                                                                  
+
+                                                                  
+</p><!-- l. 211 --><p class="indent">   <span class="cmbx-10">Feature selection</span>. The selection of relevant features is crucial for developing
+accurate dyslexia prediction models. However, identifying the most important features
+can be challenging and may require expert knowledge of the disease.
+</p><!-- l. 213 --><p class="indent">   <span class="cmbx-10">Preprocessing</span>. The selection of appropriate preprocessing techniques, such as
+data cleaning, normalization, and feature extraction, can impact the performance of
+the ML model.
+</p><!-- l. 215 --><p class="indent">   <span class="cmbx-10">Ethical concerns</span>. There are ethical concerns related to the use of ML in
+predicting dyslexia disease. For example, there is a risk that the predictions may be
+used to stigmatize individuals or limit their opportunities. See also the section
+below.
+</p><!-- l. 218 --><p class="noindent">
+</p>
+   <h3 class="sectionHead" id="ethical-considerations"><span class="titlemark">7   </span> <a id="x1-220007"></a>Ethical Considerations</h3>
+<!-- l. 219 --><p class="noindent">Ethical considerations should be emphasized regarding the use of sensitive personal
+data and potential stigmatization. In particular, the use of eye-tracking measures and
+other behavioral data for dyslexia prediction raises privacy concerns. Researchers
+must ensure that they have obtained informed consent from participants and
+protect their privacy by using secure data storage and appropriate data sharing
+policies. Additionally, the use of machine learning algorithms in dyslexia
+prediction can lead to potential biases, especially if the training data is biased.
+Therefore, researchers must take steps to ensure that their models are unbiased
+and do not perpetuate existing biases or stereotypes. Moreover, dyslexia
+prediction using machine learning should not be used as a basis for exclusion or
+discrimination against individuals with dyslexia. It is crucial to ensure that the
+results of dyslexia prediction are used only to support early intervention and
+support for individuals with dyslexia and not for labeling or stigmatizing
+them (<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xchakraborty2020machine">Chakraborty&nbsp;&amp; Sundaram</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xchakraborty2020machine">2020</a>;&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkariyawasam2019gamified">Kariyawasam&nbsp;et al.</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xkariyawasam2019gamified">2019</a>;&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xrello2016dytective">Rello&nbsp;et
+al.</a>,&nbsp;<a href="https://jbds.isdsa.org/public/journals/1/html/v3n1/s/#Xrello2016dytective">2016</a>).
+</p><!-- l. 222 --><p class="noindent">
+</p>
+   <h3 class="sectionHead" id="future-directions-and-potential-areas-for-improvement"><span class="titlemark">8   </span> <a id="x1-230008"></a>Future Directions and Potential Areas for Improvement</h3>
+<!-- l. 223 --><p class="noindent">Dyslexia prediction using machine learning is a promising area of research with
+potential for significant impact on early identification and intervention for children
+with dyslexia. However, there are several areas for improvement and future directions
+that researchers can focus on.
+</p><!-- l. 225 --><p class="indent">   <span class="cmbx-10">Larger datasets</span>. One of the main challenges in dyslexia prediction using
+machine learning is the availability of large and diverse datasets. Future research
+should focus on collecting and sharing larger datasets that include data from different
+populations, languages, and cultures.
+</p><!-- l. 227 --><p class="indent">   <span class="cmbx-10">Better feature engineering</span>. Feature engineering is the process of selecting and
+                                                                  
+
+                                                                  
+extracting relevant features from data that can be used for machine learning. Future
+research should focus on developing better feature engineering methods that can
+capture more relevant features from data, including features related to cognitive
+processes and linguistic features.
+</p><!-- l. 229 --><p class="indent">   <span class="cmbx-10">Model interpretability</span>. Machine learning models used for dyslexia prediction
+should be interpretable, meaning that it should be possible to understand how the
+model arrived at its prediction. This is important for clinicians and educators who
+need to make decisions based on the model’s output. Future research should
+focus on developing machine learning models that are more interpretable and
+transparent.
+</p><!-- l. 231 --><p class="indent">   <span class="cmbx-10">Validation and replication</span>. Dyslexia prediction models should be validated on
+independent datasets to ensure that they are robust and generalizable. Future
+research should focus on replicating existing models on independent datasets and
+comparing their performance to identify the most effective models.
+</p><!-- l. 233 --><p class="indent">   <span class="cmbx-10">Integration with clinical practice</span>. Dyslexia prediction models should be
+integrated with clinical practice to ensure that they are useful in real-world settings.
+Future research should focus on developing user-friendly interfaces for dyslexia
+prediction models and testing their effectiveness in clinical practice.
+</p><!-- l. 235 --><p class="indent">   Overall, dyslexia prediction using machine learning has the potential to
+make a significant impact on early identification and intervention for children
+with dyslexia. By addressing the above areas for improvement, researchers
+can develop more accurate, reliable, and clinically useful dyslexia prediction
+models.
+</p><!-- l. 238 --><p class="noindent">
+</p>
+   <h3 class="sectionHead" id="conclusion-"><span class="titlemark">9   </span> <a id="x1-240009"></a>Conclusion </h3>
+<!-- l. 240 --><p class="noindent">The field of predicting dyslexia with machine learning is rapidly evolving with
+advancements in feature selection, algorithm development, and evaluation metrics.
+Through our comprehensive review of the existing literature, we have provided an
+overview of the state-of-the-art techniques and highlighted their strengths and
+weaknesses. We found that a combination of behavioral and neuroimaging data is
+essential for accurate dyslexia prediction. In addition, the use of advanced algorithms
+such as deep learning has shown promising results. However, there are still
+some challenges that need to be addressed, such as small sample sizes and
+the need for validation in diverse populations. We recommend that future
+research focuses on addressing these challenges and developing more robust
+models that can be applied in clinical settings. Overall, the use of machine
+learning for dyslexia prediction has the potential to greatly improve early
+identification and intervention, leading to better outcomes for individuals with
+dyslexia.
+</p><!-- l. 1 --><p class="noindent">
+                                                                  
+
+                                                                  
+</p>
+   <h3 class="likesectionHead" id="references"><a id="x1-25000"></a>References</h3>
+<!-- l. 1 --><p class="noindent">
+     </p><div class="thebibliography">
+     <p class="bibitem"><span class="biblabel">
+<a id="Xahmad2022efficient"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Ahmad, N., Rehman, M.&nbsp;B., Hassan, H.&nbsp;M.&nbsp;E., Ahmad, I.,&nbsp;&amp; Rashid, M.&nbsp;(2022,
+     jul). An efficient machine learning-based feature optimization model for the
+     detection of dyslexia. <span class="cmti-10">Computational Intelligence and Neuroscience</span>, <span class="cmti-10">2022</span>, 1–7.
+     doi: <a href="https://doi.org/10.1155/2022/8491753">https://doi.org/10.1155/2022/8491753</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xalqahtani2023"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Alqahtani, N.&nbsp;D., Alzahrani, B.,&nbsp;&amp; Ramzan, M.&nbsp;S.&nbsp;(2023). Deep learning
+     applications for dyslexia prediction. <span class="cmti-10">Applied Sciences</span>, <span class="cmti-10">13</span>(5), 2804. doi:
+     <a href="https://doi.org/10.3390/app13052804">https://doi.org/10.3390/app13052804</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xasvestopoulou2019dyslexml"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Asvestopoulou, T., Manousaki, V., Psistakis, A., Smyrnakis, I., Andreadakis, V.,
+     Aslanides, I.&nbsp;M.,&nbsp;&amp; Papadopouli, M.&nbsp;(2019). <span class="cmti-10">Dyslexml: Screening tool for dyslexia
+     using machine learning. </span>arXiv. doi: <a href="https://doi.org/10.48550/arXiv.1903.06274">https://doi.org/10.48550/arXiv.1903.06274</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xchakraborty2020machine"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Chakraborty, V.,&nbsp;&amp; Sundaram, M.&nbsp;(2020). Machine learning algorithms for prediction
+     of dyslexia using eye movement. In <span class="cmti-10">Journal of physics: Conference series</span>&nbsp;(Vol.&nbsp;1427,
+     p.&nbsp;012029). doi: <a href="https://doi.org/10.1088/1742-6596/1427/1/012012">https://doi.org/10.1088/1742-6596/1427/1/012012</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xchakraborty2021"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Chakraborty, V., Vani,&nbsp;&amp; Sundaram, M.&nbsp;(2021). An efficient smote-based model
+     for dyslexia prediction. <span class="cmti-10">International Journal of Information Engineering &amp;
+     Electronic Business</span>, <span class="cmti-10">13</span>(6), 13-21. doi: <a href="https://doi.org/10.5815/ijieeb.2021.06.02">https://doi.org/10.5815/ijieeb.2021.06.02</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xfawcett2006introduction"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Fawcett, T.&nbsp;(2006). An introduction to roc analysis. <span class="cmti-10">Pattern recognition letters</span>,
+     <span class="cmti-10">27</span>(8), 861–874. doi: <a href="https://doi.org/10.1016/j.patrec.2005.10.010">https://doi.org/10.1016/j.patrec.2005.10.010</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xjothi2019predictive"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Jothi&nbsp;Prabha, A.,&nbsp;&amp; Bhargavi, R.&nbsp;(2019). Predictive model for dyslexia using
+     machine learning—a research travelogue.  In <span class="cmti-10">Proceedings of the third
+     international conference on microelectronics, computing and communication
+     systems: Mccs 2018</span>&nbsp;(pp.&nbsp;1–6).
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xkaisar2020developmental"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Kaisar, S.&nbsp; (2020).  Developmental dyslexia detection using machine
+     learning techniques: A survey.  <span class="cmti-10">ICT Express</span>, <span class="cmti-10">6</span>(3), 181–184.  doi:
+     <a href="https://doi.org/10.1016/j.icte.2020.05.006">https://doi.org/10.1016/j.icte.2020.05.006</a>
+     </p>
+                                                                  
+
+                                                                  
+     <p class="bibitem"><span class="biblabel">
+<a id="Xkariyawasam2019gamified"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Kariyawasam, R., Nadeeshani, M., Hamid, T., Subasinghe, I.,&nbsp;&amp; Ratnayake,
+     P.&nbsp;(2019, dec).  A gamified approach for screening and intervention
+     of dyslexia, dysgraphia and dyscalculia.  In <span class="cmti-10">2019 international
+     conference on advancements in computing (icac)</span>&nbsp;(pp.&nbsp;1–6). IEEE. doi:
+     <a href="https://doi.org/10.1109/icac49085.2019.9103336">https://doi.org/10.1109/icac49085.2019.9103336</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xkhan2018machine"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Khan, R.&nbsp;U., Cheng, J.&nbsp;L.&nbsp;A.,&nbsp;&amp; Bee, O.&nbsp;Y.&nbsp;(2018). Machine learning and
+     dyslexia: Diagnostic and classification system (dcs) for kids with learning
+     disabilities. <span class="cmti-10">International Journal of Engineering &amp; Technology</span>, <span class="cmti-10">7</span>(3.18),
+     97–100.
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xmartin2016dyslexic"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Martin, A., Kronbichler, M.,&nbsp;&amp; Richlan, F.&nbsp;(2016). Dyslexic brain activation
+     abnormalities in deep and shallow orthographies: A meta-analysis of 28
+     functional neuroimaging studies. <span class="cmti-10">Human brain mapping</span>, <span class="cmti-10">37</span>(7), 2676–2699. doi:
+     <a href="https://doi.org/10.1002/hbm.23202">https://doi.org/10.1002/hbm.23202</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xmmt2019intelligent"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>MMT, M.&nbsp;H.,&nbsp;&amp; Sangamithra, A.&nbsp;(2019). Intelligent predicting learning
+     disabilities in school going children using fuzzy logic k mean clustering in
+     machine learning. <span class="cmti-10">Int. J. Recent Technol. Eng</span>, <span class="cmti-10">8</span>(4), 1694–1698. doi:
+     <a href="https://doi.org/10.35940/ijrte.c5620.118419">https://doi.org/10.35940/ijrte.c5620.118419</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xplante2015nature"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Plante, E., Patterson, D., Gomez, R., Almryde, K.&nbsp;R., White, M.&nbsp;G.,&nbsp;&amp;
+     Asbjørnsen, A.&nbsp;E.&nbsp;(2015). The nature of the language input affects brain
+     activation during learning from a natural language. <span class="cmti-10">Journal of Neurolinguistics</span>,
+     <span class="cmti-10">36</span>, 17–34. doi: <a href="https://doi.org/10.1016/j.jneuroling.2015.02.002">https://doi.org/10.1016/j.jneuroling.2015.02.002</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xpowers2020evaluation"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Powers, D.&nbsp;M.&nbsp;(2020). Evaluation: from precision, recall and f-measure to roc,
+     informedness, markedness and correlation. <span class="cmti-10">arXiv preprint arXiv:2010.16061</span>.
+     doi: <a href="https://doi.org/10.48550/arXiv.2010.16061">https://doi.org/10.48550/arXiv.2010.16061</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xprabha2022prediction"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Prabha, A.&nbsp;J.,&nbsp;&amp; Bhargavi, R.&nbsp;(2022). Prediction of dyslexia from eye
+     movements using machine learning. <span class="cmti-10">IETE Journal of Research</span>, <span class="cmti-10">68</span>(2), 814–823.
+     doi: <a href="https://doi.org/10.1080/03772063.2019.1622461">https://doi.org/10.1080/03772063.2019.1622461</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xprabha2019predictive"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Prabha, A.&nbsp;J., Bhargavi, R.,&nbsp;&amp; Ragala, R.&nbsp;(2019).  Predictive model
+     for dyslexia from eye fixation events.  <span class="cmti-10">International Journal of
+     Engineering and Advanced Technology (IJEAT)</span>, <span class="cmti-10">9</span>, 235–240.  doi:
+                                                                  
+
+                                                                  
+     <a href="https://doi.org/10.35940/ijeat.a1045.1291s319">https://doi.org/10.35940/ijeat.a1045.1291s319</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xrello2015detecting"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Rello, L.,&nbsp;&amp; Ballesteros, M.&nbsp;(2015). Detecting readers with dyslexia using machine
+     learning with eye tracking measures. In <span class="cmti-10">Proceedings of the 12th international
+     web for all conference. </span>doi: <a href="https://doi.org/10.1145/2745555.2746644">https://doi.org/10.1145/2745555.2746644</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xrello2016dytective"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Rello, L., Ballesteros, M., Ali, A., Serra, M., Sanchez, D.&nbsp;A.,&nbsp;&amp; Bigham, J.&nbsp;P.&nbsp;
+     (2016). Dytective: diagnosing risk of dyslexia with a game. In <span class="cmti-10">Pervasivehealth.</span>
+     ACM. doi: <a href="https://doi.org/10.4108/eai.16-5-2016.2263338">https://doi.org/10.4108/eai.16-5-2016.2263338</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xrello2018screening"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Rello, L., Romero, E., Rauschenberger, M., Ali, A., Williams, K., Bigham, J.&nbsp;P.,&nbsp;&amp;
+     White, N.&nbsp;C.&nbsp;(2018, apr). Screening dyslexia for english using hci measures and
+     machine learning. In <span class="cmti-10">Proceedings of the 2018 international conference on digital
+     health. </span>ACM. doi: <a href="https://doi.org/10.1145/3194658.3194675">https://doi.org/10.1145/3194658.3194675</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xsaito2015precision"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Saito, T.,&nbsp;&amp; Rehmsmeier, M.&nbsp;(2015). The precision-recall plot is more informative
+     than the roc plot when evaluating binary classifiers on imbalanced datasets.
+     <span class="cmti-10">PloS one</span>, <span class="cmti-10">10</span>(3), e0118432. doi: <a href="https://doi.org/10.1371/journal.pone.0118432">https://doi.org/10.1371/journal.pone.0118432</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xtamboer2014identifying"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Tamboer, P., Vorst, H.&nbsp;C.,&nbsp;&amp; Oort, F.&nbsp;J.&nbsp;(2014). Identifying dyslexia
+     in adults: an iterative method using the predictive value of item
+     scores and self-report questions.  <span class="cmti-10">Annals of dyslexia</span>, <span class="cmti-10">64</span>, 34–56.  doi:
+     <a href="https://doi.org/10.1007/s11881-013-0085-9">https://doi.org/10.1007/s11881-013-0085-9</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xvajs2022dyslexia"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Vajs, I., Kovic, V., Papic, T., Savic, A.&nbsp;M.,&nbsp;&amp; Jankovic, M.&nbsp;M.&nbsp;(2022, aug).
+     Dyslexia detection in children using eye tracking data based on vgg16 network.
+     In <span class="cmti-10">2022 30th european signal processing conference (eusipco). </span>IEEE. doi:
+     <a href="https://doi.org/10.23919/eusipco55093.2022.9909817">https://doi.org/10.23919/eusipco55093.2022.9909817</a>
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xvanitha2021dyslexia"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Vanitha, G.,&nbsp;&amp; Kasthuri, M.&nbsp;(2021). Dyslexia prediction using machine learning
+     algorithms–a review. <span class="cmti-10">International Journal of Aquatic Science</span>, <span class="cmti-10">12</span>(2),
+     3372–3380.
+     </p>
+     <p class="bibitem"><span class="biblabel">
+<a id="Xzahia2020dyslexia"></a><span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span>Zahia, S., Garcia-Zapirain, B., Saralegui, I.,&nbsp;&amp; Fernandez-Ruanova, B.&nbsp;(2020,
+     dec). Dyslexia detection using 3d convolutional neural networks and functional
+     magnetic resonance imaging. <span class="cmti-10">Computer methods and programs in biomedicine</span>,
+     <span class="cmti-10">197</span>, 105726. doi: <a href="https://doi.org/10.1016/j.cmpb.2020.105726">https://doi.org/10.1016/j.cmpb.2020.105726</a>
+                                                                  
+
+                                                                  
+</p>
+     </div>
+    
+ 
+</body></html>
